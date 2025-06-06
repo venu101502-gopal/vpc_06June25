@@ -90,11 +90,11 @@ resource "aws_security_group" "public_security" {
 
   dynamic "ingress" {
     for_each = var.security_ports_ingress
-    iterator = "port"
+    iterator = port
 
     content {
       from_port = port.value
-      to_port = path.value
+      to_port = port.value
       cidr_blocks = var.security_ports_ingress
       protocol = "tcp"
 
