@@ -26,8 +26,8 @@ variable "security_ports" {
   type = list(number)  # Changed to list(number) if it's meant to be a list of ports
 }
 
-variable "security_ports_ingress" {
-  type = list(number)
+variable "security_ports_egress" {
+  type = list(string)  
 }
 
 variable "security_ports_egress" {
