@@ -30,10 +30,6 @@ variable "security_ports_egress" {
   type = list(string)  
 }
 
-variable "security_ports_egress" {
-  type = string  # Keep as string if it's a CIDR block or a specific value
-}
-
 variable "public_subnet_avz" {
   type = string
 }
