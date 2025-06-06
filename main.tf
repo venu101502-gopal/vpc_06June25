@@ -89,7 +89,7 @@ resource "aws_security_group" "public_security" {
 
 
   dynamic "ingress" {
-    for_each = var.security_ports_ingress
+    for_each = var.sg_ports
     iterator = port
     content {
       from_port = port.value
