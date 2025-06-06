@@ -23,11 +23,15 @@ variable "cidr_block" {
 }
 
 variable "security_ports" {
-  type = list(number)  # Changed to list(number) if it's meant to be a list of ports
+  type = list(number)  # List of ports for security group
+}
+
+variable "security_ports_ingress" {
+  type = list(number)  # List of ports for ingress rules
 }
 
 variable "security_ports_egress" {
-  type = list(string)  
+  type = list(string)   # List of CIDR blocks for egress rules
 }
 
 variable "public_subnet_avz" {
@@ -72,7 +76,6 @@ variable "cidr_blocks" {
 
 variable "sg_ports" {
   type = list(number)
-  description = "allows_tls"
-  default = [ 8080, 80, 9090, 443, 3306, 22 ]
-  
+  description = "List of ports for security group rules"
+  default = [8080, 80, 9090, 443, 3306, 22]
 }
