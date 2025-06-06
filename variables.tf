@@ -69,3 +69,10 @@ variable "security_group" {
 variable "cidr_blocks" {
   type = string
 }
+
+variable "sg_ports" {
+  type = list(number)
+  description = "allows_tls"
+  default = [ 8080, 80, 9090, 443, 3306, 22 ]
+  
+}
