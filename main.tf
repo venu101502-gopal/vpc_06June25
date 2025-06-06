@@ -84,36 +84,33 @@ resource "aws_route_table_association" "venu_public_route_table_assoc" {
 
 
 resource "aws_security_group" "public_security" {
-  name = var.security_group
-  vpc_id = aws_vpc.vpc.id
-
+  name        = var.security_group
+  vpc_id      = aws_vpc.vpc.id
 
   dynamic "ingress" {
-    for_each = var.sg_ports
+    for_each = var.security_ports_ingress
     iterator = port
     content {
-      from_port = port.value
-      to_port = port.value
-      cidr_blocks = var.security_ports_ingress
-      protocol = "tcp"
-
+      from_port   = port.value
+      to_port     = port.value
+      protocol    = "tcp"
+      cidr_blocks = var.cidr_blocks  # Use var.cidr_blocks for ingress
     }
-    
   }
 
-egress {
-  from_port = 0
-  to_port = 0
-  protocol = "-1"
-  cidr_blocks = var.security_ports_egress
-}
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = var.security_ports_egress
+  }
 
-tags = {
-  Name = var.security_group
-  author = var.author
-  when = var.when
+  tags = {
+    Name   = var.security_group
+    author = var.author
+    when   = var.when
+  }
 }
-
   
   
 }
